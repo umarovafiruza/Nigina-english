@@ -225,7 +225,6 @@ button {
   align-items: center;
   gap: 12px;
   margin-bottom: 24px;
-  flex-wrap: wrap;
 }
 
 .filter-label {
@@ -251,6 +250,7 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .level-btn:last-child {
@@ -270,6 +270,34 @@ button {
 .level-btn:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: -2px;
+}
+
+@media (max-width: 540px) {
+  .level-filter-bar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .level-filter-bar .filter-label {
+    display: none;
+  }
+
+  .level-selector {
+    width: 100%;
+    display: flex;
+  }
+
+  .level-btn {
+    flex: 1;
+    min-height: 40px;
+    padding: 0 4px;
+    font-size: 0.8125rem;
+    text-align: center;
+  }
+
+  .level-btn .level-sub {
+    display: none;
+  }
 }
 
 /* Responsive Topic Grid:
@@ -554,64 +582,47 @@ button {
   transition: background-color 300ms ease, border-color 300ms ease;
 }
 
-@media (min-width: 768px) {
-  .control-bar {
-    padding: 10px 24px;
-    padding-bottom: calc(10px + env(safe-area-inset-bottom));
-  }
-}
-
+/* Inner Container: Mobile-first 2-tier layout, Desktop single-row */
 .control-bar-inner {
   width: 100%;
-  max-width: 1080px;
+  max-width: 480px;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  grid-template-rows: auto auto;
+  row-gap: 8px;
+  column-gap: 8px;
+  align-items: center;
+}
+
+/* Tier 1 (Mobile Row 1): Speed Controls spanning across all 3 columns */
+.control-group.speed-group {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 8px 10px;
-}
-
-@media (min-width: 900px) {
-  .control-bar-inner {
-    justify-content: space-between;
-    gap: 12px;
-  }
-}
-
-.control-group {
-  display: inline-flex;
-  align-items: center;
+  justify-content: space-between;
   gap: 6px;
-}
-
-/* Speed Control Group (Slider + Presets) */
-.speed-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
+  padding: 0;
 }
 
 .speed-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-muted);
+  display: none;
 }
 
 .speed-slider-wrap {
-  display: inline-flex;
+  flex: 1;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: 44px;
+  gap: 4px;
+  min-height: 36px;
+  min-width: 0;
 }
 
 .btn-speed-step {
-  min-height: 36px;
+  min-height: 34px;
   min-width: 30px;
-  padding: 0 4px;
+  padding: 0;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1;
@@ -625,7 +636,10 @@ button {
 .speed-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 95px;
+  flex: 1;
+  width: 100%;
+  min-width: 40px;
+  max-width: 120px;
   height: 4px;
   accent-color: var(--color-text-main);
   background: var(--color-border);
@@ -633,12 +647,6 @@ button {
   cursor: pointer;
   outline: none;
   transition: opacity var(--duration-transition) ease;
-}
-
-@media (min-width: 600px) {
-  .speed-slider {
-    width: 130px;
-  }
 }
 
 .speed-slider::-webkit-slider-thumb {
@@ -669,24 +677,25 @@ button {
 }
 
 .speed-display-text {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-text-main);
-  min-width: 66px;
+  min-width: 52px;
   font-variant-numeric: tabular-nums;
-  text-align: left;
+  text-align: right;
 }
 
 .speed-presets {
   display: inline-flex;
   border: 1px solid var(--color-border);
   background-color: var(--color-bg);
+  flex-shrink: 0;
 }
 
 .speed-preset-btn {
-  min-height: 36px;
-  min-width: 36px;
-  padding: 0 8px;
+  min-height: 34px;
+  min-width: 32px;
+  padding: 0 6px;
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-text-muted);
@@ -716,5 +725,167 @@ button {
 .speed-preset-btn:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: -2px;
+}
+
+/* Tier 2 (Mobile Row 2): Action Buttons */
+/* Column 1: Back Button */
+.control-group.exit-group {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  width: 100%;
+}
+
+.control-group.exit-group #btn-back {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* Columns 2 & 3: Pause & Restart */
+.control-group.action-group {
+  grid-column: 2 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.control-group.action-group #btn-toggle-pause {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background-color: var(--color-text-main);
+  color: var(--color-bg);
+  border-color: var(--color-text-main);
+  text-align: center;
+}
+
+.control-group.action-group #btn-toggle-pause:hover {
+  background-color: #2e2e2e;
+  border-color: #2e2e2e;
+}
+
+.control-group.action-group #btn-restart {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* Mobile active tap feedback */
+.btn-text:active,
+.level-btn:active,
+.speed-preset-btn:active {
+  transform: scale(0.97);
+  transition: transform 60ms ease;
+}
+
+/* Desktop layout: Single unified row */
+@media (min-width: 680px) {
+  .control-bar {
+    padding: 10px 24px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+
+  .control-bar-inner {
+    max-width: 1080px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .control-group.action-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+  }
+
+  .control-group.action-group #btn-toggle-pause,
+  .control-group.action-group #btn-restart {
+    width: auto;
+    min-height: 44px;
+    padding: 8px 18px;
+    font-size: 0.875rem;
+  }
+
+  .control-group.speed-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+    flex: initial;
+  }
+
+  .speed-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .speed-slider-wrap {
+    flex: initial;
+    min-height: 44px;
+    gap: 6px;
+  }
+
+  .btn-speed-step {
+    min-height: 36px;
+    min-width: 32px;
+    padding: 0 4px;
+  }
+
+  .speed-slider {
+    width: 110px;
+    flex: initial;
+  }
+
+  .speed-display-text {
+    font-size: 0.8125rem;
+    min-width: 62px;
+    text-align: left;
+  }
+
+  .speed-preset-btn {
+    min-height: 36px;
+    min-width: 36px;
+    padding: 0 8px;
+  }
+
+  .control-group.exit-group {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+  }
+
+  .control-group.exit-group #btn-back {
+    width: auto;
+    min-height: 44px;
+    padding: 8px 18px;
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .speed-slider {
+    width: 140px;
+  }
 }
 
