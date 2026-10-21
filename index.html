@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CEFR Speaking Practice (A1 • A2 • B1)</title>
+  <meta name="description" content="Minimalist CEFR A1, A2, and B1 English speaking practice teleprompter for oral examination readiness.">
+  
+  <!-- Google Fonts: Inter for UI, Source Serif 4 for reading text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Thin Progress Line at Top -->
+  <div id="progress-bar-container" aria-hidden="true">
+    <div id="progress-bar"></div>
+  </div>
+
+  <main id="main-content">
+    <!-- SCREEN 1: TOPIC SELECTION -->
+    <section id="screen-topics" class="screen active" aria-labelledby="topics-title">
+      <header class="header-topics">
+        <div class="header-topics-main">
+          <h1 id="topics-title" class="page-title">Speaking Practice</h1>
+          <p class="page-instruction">Choose a topic (A1, A2, or B1). The text will scroll like a teleprompter at your chosen pace. Read aloud and insert your own details at each blank line.</p>
+        </div>
+        <div class="header-topics-music">
+          <button id="btn-browse-music" class="btn-text" aria-label="Toggle ambient background music while browsing">Calm Music: Off</button>
+        </div>
+      </header>
+
+      <!-- Level Filter Toolbar -->
+      <nav class="level-filter-bar" aria-label="Filter topics by CEFR level">
+        <span class="filter-label">Level:</span>
+        <div class="level-selector" role="radiogroup" aria-label="CEFR proficiency level">
+          <button class="level-btn active" data-level="all" role="radio" aria-checked="true">All (10)</button>
+          <button class="level-btn" data-level="A1" role="radio" aria-checked="false">A1 Beginner</button>
+          <button class="level-btn" data-level="A2" role="radio" aria-checked="false">A2 Elementary</button>
+          <button class="level-btn" data-level="B1" role="radio" aria-checked="false">B1 Intermediate</button>
+        </div>
+      </nav>
+
+      <div class="topic-grid" id="topics-container" role="list" aria-label="Available speaking topics">
+        <!-- Topic cards dynamically rendered by js/app.js -->
+      </div>
+    </section>
+
+    <!-- SCREEN 2: PRACTICE TELEPROMPTER SCREEN -->
+    <section id="screen-practice" class="screen" aria-label="Reading practice session" aria-hidden="true">
+      <!-- Optical Smooth Fade Overlays (Zero-cost pure CSS gradient) -->
+      <div class="fade-overlay-top" aria-hidden="true"></div>
+      <div class="fade-overlay-bottom" aria-hidden="true"></div>
+
+      <!-- 3-2-1 Countdown Overlay -->
+      <div id="countdown-overlay" class="countdown-overlay hidden" aria-live="assertive">
+        <div id="countdown-number" class="countdown-number">3</div>
+        <div class="countdown-instruction">Speak fast and clear</div>
+      </div>
+
+      <!-- Teleprompter Scrolling Viewport -->
+      <div id="teleprompter-viewport" class="teleprompter-viewport" tabindex="0" role="region" aria-label="Auto-scrolling speech text. Click or press Space to pause.">
+        <div id="teleprompter-content" class="teleprompter-content">
+          <div id="teleprompter-text" class="teleprompter-text">
+            <!-- Text rendered by js/app.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Bar (Text buttons only, strictly no icons) -->
+      <nav class="control-bar" aria-label="Practice session controls">
+        <div class="control-bar-inner">
+          <!-- Playback Actions Group -->
+          <div class="control-group action-group">
+            <button id="btn-toggle-pause" class="btn-text" aria-label="Toggle pause or resume scrolling">Pause</button>
+            <button id="btn-restart" class="btn-text" aria-label="Restart current topic from beginning">Restart</button>
+          </div>
+
+          <!-- Reading Pace Speed Slider & Presets Group -->
+          <div class="control-group speed-group" aria-label="Reading pace adjustment">
+            <span class="speed-label">Speed:</span>
+            <div class="speed-slider-wrap">
+              <button id="btn-speed-down" class="btn-text btn-speed-step" type="button" aria-label="Decrease reading speed">−</button>
+              <input 
+                type="range" 
+                id="speed-slider" 
+                class="speed-slider" 
+                min="40" 
+                max="250" 
+                step="5" 
+                value="110" 
+                aria-label="Reading speed slider from 40 to 250 words per minute"
+              >
+              <button id="btn-speed-up" class="btn-text btn-speed-step" type="button" aria-label="Increase reading speed">+</button>
+              <span id="speed-display" class="speed-display-text" aria-live="polite">110 WPM</span>
+            </div>
+            <div class="speed-presets" role="radiogroup" aria-label="Quick speed presets">
+              <button class="speed-preset-btn" data-wpm="60" role="radio" aria-checked="false" type="button" aria-label="60 words per minute (Slow)">60</button>
+              <button class="speed-preset-btn active" data-wpm="110" role="radio" aria-checked="true" type="button" aria-label="110 words per minute (Normal)">110</button>
+              <button class="speed-preset-btn" data-wpm="160" role="radio" aria-checked="false" type="button" aria-label="160 words per minute (Brisk)">160</button>
+              <button class="speed-preset-btn" data-wpm="250" role="radio" aria-checked="false" type="button" aria-label="250 words per minute (Max)">250</button>
+            </div>
+          </div>
+
+          <!-- Comprehensive Music Management Group -->
+          <div class="control-group music-control-group" aria-label="Calm lo-fi background music controls">
+            <button id="btn-prev-track" class="btn-text" aria-label="Play previous calm music track">Prev Track</button>
+            <button id="btn-track-menu" class="btn-text btn-track-indicator" aria-haspopup="dialog" aria-expanded="false" aria-label="Select background music track">
+              <span id="track-name-label">Track 01: Star Glow</span>
+            </button>
+            <button id="btn-next-track" class="btn-text" aria-label="Play next calm music track">Next Track</button>
+            
+            <button id="btn-toggle-music" class="btn-text" aria-label="Toggle background music on or off">Music: On</button>
+            
+            <div class="volume-slider-wrap" aria-label="Music volume adjustment">
+              <span id="volume-display" class="volume-display-text" aria-label="Current volume percentage">20%</span>
+              <label for="music-volume" class="sr-only">Music Volume</label>
+              <input type="range" id="music-volume" class="volume-slider" min="0" max="1" step="0.05" value="0.2" aria-label="Music volume slider">
+            </div>
+          </div>
+
+          <!-- Navigation Back Group -->
+          <div class="control-group exit-group">
+            <button id="btn-back" class="btn-text" aria-label="Return to topic selection screen">Back</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Track Selection Dialog (Minimalist Text List) -->
+      <div id="track-menu-modal" class="track-menu-modal hidden" role="dialog" aria-modal="true" aria-labelledby="track-menu-title" aria-hidden="true">
+        <div class="track-menu-backdrop" id="track-menu-backdrop"></div>
+        <div class="track-menu-panel">
+          <div class="track-menu-header">
+            <div>
+              <h3 id="track-menu-title" class="track-menu-title">Select Calm Lo-Fi Music</h3>
+              <p class="track-menu-sub">Royalty-free soothing background soundscapes</p>
+            </div>
+            <button id="btn-close-track-menu" class="btn-text" aria-label="Close track selection modal">Close</button>
+          </div>
+          <div class="track-list" id="track-list" role="radiogroup" aria-label="Available calm lo-fi tracks">
+            <!-- 10 tracks populated by app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load Application Logic -->
+  <script src="js/app.js" defer></script>
+  
+  <!-- Module integration for HTTP / Modern module environments -->
+  <script type="module">
+    try {
+      const module = await import('./js/texts.js');
+      if (module && module.topics && window.SpeakingApp) {
+        window.SpeakingApp.initTopics(module.topics, module.lofiPlaylist);
+      }
+    } catch (e) {
+      // Running directly via file:// protocol in Chromium; app.js already loaded fallback topics seamlessly.
+    }
+  </script>
+</body>
+</html>
