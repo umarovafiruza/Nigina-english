@@ -5,19 +5,6 @@
  * Each topic includes an eye-friendly, soothing pastel color theme.
  */
 
-export const lofiPlaylist = [
-  { id: 1, title: "Aurora Serenity", subtitle: "Peaceful Ambient Strings & Piano", src: "assets/audio/music-01.mp3" },
-  { id: 2, title: "Morning Calm", subtitle: "Soft Ambient Acoustic", src: "assets/audio/music-02.mp3" },
-  { id: 3, title: "Gentle Piano Dream", subtitle: "Warm Meditative Keys", src: "assets/audio/music-03.mp3" },
-  { id: 4, title: "Tranquil Reverie", subtitle: "Quiet Ambient Soundscape", src: "assets/audio/music-04.mp3" },
-  { id: 5, title: "Velvet Breeze", subtitle: "Soothing Slow Ambience", src: "assets/audio/music-05.mp3" },
-  { id: 6, title: "Still Waters", subtitle: "Peaceful Mind Chords", src: "assets/audio/music-06.mp3" },
-  { id: 7, title: "Sunlit Meadow", subtitle: "Soft Atmospheric Warmth", src: "assets/audio/music-07.mp3" },
-  { id: 8, title: "Evening Peace", subtitle: "Relaxing Mellow Piano", src: "assets/audio/music-08.mp3" },
-  { id: 9, title: "Cloud Drift", subtitle: "Calm Minimal Melodies", src: "assets/audio/music-09.mp3" },
-  { id: 10, title: "Serene Horizon", subtitle: "Gentle Head-Clearing Calm", src: "assets/audio/music-10.mp3" }
-];
-
 export const topics = [
   // ==========================================
   // CEFR LEVEL A1 (Beginner)
@@ -28,8 +15,6 @@ export const topics = [
     levelName: "A1 Beginner",
     title: "Introducing myself and my family",
     grammarFocus: "Present simple, verb to be, family words",
-    music: "assets/audio/music-01.mp3",
-    musicTitle: "Aurora Serenity (Calm Ambient)",
     theme: {
       name: "Warm Linen",
       bg: "#F8F4EE",
@@ -46,8 +31,6 @@ export const topics = [
     levelName: "A1 Beginner",
     title: "My daily routine",
     grammarFocus: "Present simple, daily actions, time phrases",
-    music: "assets/audio/music-02.mp3",
-    musicTitle: "Morning Calm (Soft Acoustic)",
     theme: {
       name: "Tranquil Sage",
       bg: "#F0F5F1",
@@ -64,8 +47,6 @@ export const topics = [
     levelName: "A1 Beginner",
     title: "My home and neighborhood",
     grammarFocus: "There is / There are, adjectives, prepositions",
-    music: "assets/audio/music-03.mp3",
-    musicTitle: "Gentle Piano Dream (Warm Keys)",
     theme: {
       name: "Morning Mist",
       bg: "#F0F4F8",
@@ -86,8 +67,6 @@ export const topics = [
     levelName: "A2 Elementary",
     title: "Where I live: Comparing two places",
     grammarFocus: "Comparatives, simple contrast (than, but)",
-    music: "assets/audio/music-04.mp3",
-    musicTitle: "Tranquil Reverie (Quiet Ambient)",
     theme: {
       name: "Soft Almond",
       bg: "#F7F2EC",
@@ -104,8 +83,6 @@ export const topics = [
     levelName: "A2 Elementary",
     title: "Hobbies and free time activities",
     grammarFocus: "Likes/dislikes, expressing reasons (because, so)",
-    music: "assets/audio/music-05.mp3",
-    musicTitle: "Velvet Breeze (Soothing Ambience)",
     theme: {
       name: "Gentle Lavender",
       bg: "#F5F2F8",
@@ -122,8 +99,6 @@ export const topics = [
     levelName: "A2 Elementary",
     title: "A memorable holiday trip",
     grammarFocus: "Past simple (regular and irregular), time connectors",
-    music: "assets/audio/music-06.mp3",
-    musicTitle: "Still Waters (Peaceful Chords)",
     theme: {
       name: "Sunlit Peach",
       bg: "#FAF4ED",
@@ -144,8 +119,6 @@ export const topics = [
     levelName: "B1 Intermediate",
     title: "Education and work experience",
     grammarFocus: "Present perfect vs past simple, career growth",
-    music: "assets/audio/music-07.mp3",
-    musicTitle: "Sunlit Meadow (Atmospheric Warmth)",
     theme: {
       name: "Pale Seafoam",
       bg: "#EFF6F3",
@@ -162,8 +135,6 @@ export const topics = [
     levelName: "B1 Intermediate",
     title: "Technology in my daily life",
     grammarFocus: "Giving opinions, expressing advantages/disadvantages",
-    music: "assets/audio/music-08.mp3",
-    musicTitle: "Evening Peace (Mellow Piano)",
     theme: {
       name: "Quiet Pearl",
       bg: "#F1F3F7",
@@ -180,8 +151,6 @@ export const topics = [
     levelName: "B1 Intermediate",
     title: "Health, food and habits",
     grammarFocus: "Modals for advice (should), conditional sentences (if)",
-    music: "assets/audio/music-09.mp3",
-    musicTitle: "Cloud Drift (Minimal Melodies)",
     theme: {
       name: "Chamomile Cream",
       bg: "#F7F4EC",
@@ -198,8 +167,6 @@ export const topics = [
     levelName: "B1 Intermediate",
     title: "Future plans and personal ambitions",
     grammarFocus: "Future intentions (going to, planning to, by the time)",
-    music: "assets/audio/music-10.mp3",
-    musicTitle: "Serene Horizon (Calm Flow)",
     theme: {
       name: "Cashmere Rose",
       bg: "#F8F1F2",
@@ -214,5 +181,4 @@ export const topics = [
 
 if (typeof window !== 'undefined') {
   window.TOPICS = topics;
-  window.LOFI_PLAYLIST = lofiPlaylist;
 }

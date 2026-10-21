@@ -28,9 +28,6 @@
           <h1 id="topics-title" class="page-title">Speaking Practice</h1>
           <p class="page-instruction">Choose a topic (A1, A2, or B1). The text will scroll like a teleprompter at your chosen pace. Read aloud and insert your own details at each blank line.</p>
         </div>
-        <div class="header-topics-music">
-          <button id="btn-browse-music" class="btn-text" aria-label="Toggle ambient background music while browsing">Calm Music: Off</button>
-        </div>
       </header>
 
       <!-- Level Filter Toolbar -->
@@ -105,46 +102,12 @@
             </div>
           </div>
 
-          <!-- Comprehensive Music Management Group -->
-          <div class="control-group music-control-group" aria-label="Calm lo-fi background music controls">
-            <button id="btn-prev-track" class="btn-text" aria-label="Play previous calm music track">Prev Track</button>
-            <button id="btn-track-menu" class="btn-text btn-track-indicator" aria-haspopup="dialog" aria-expanded="false" aria-label="Select background music track">
-              <span id="track-name-label">Track 01: Star Glow</span>
-            </button>
-            <button id="btn-next-track" class="btn-text" aria-label="Play next calm music track">Next Track</button>
-            
-            <button id="btn-toggle-music" class="btn-text" aria-label="Toggle background music on or off">Music: On</button>
-            
-            <div class="volume-slider-wrap" aria-label="Music volume adjustment">
-              <span id="volume-display" class="volume-display-text" aria-label="Current volume percentage">20%</span>
-              <label for="music-volume" class="sr-only">Music Volume</label>
-              <input type="range" id="music-volume" class="volume-slider" min="0" max="1" step="0.05" value="0.2" aria-label="Music volume slider">
-            </div>
-          </div>
-
           <!-- Navigation Back Group -->
           <div class="control-group exit-group">
             <button id="btn-back" class="btn-text" aria-label="Return to topic selection screen">Back</button>
           </div>
         </div>
       </nav>
-
-      <!-- Track Selection Dialog (Minimalist Text List) -->
-      <div id="track-menu-modal" class="track-menu-modal hidden" role="dialog" aria-modal="true" aria-labelledby="track-menu-title" aria-hidden="true">
-        <div class="track-menu-backdrop" id="track-menu-backdrop"></div>
-        <div class="track-menu-panel">
-          <div class="track-menu-header">
-            <div>
-              <h3 id="track-menu-title" class="track-menu-title">Select Calm Lo-Fi Music</h3>
-              <p class="track-menu-sub">Royalty-free soothing background soundscapes</p>
-            </div>
-            <button id="btn-close-track-menu" class="btn-text" aria-label="Close track selection modal">Close</button>
-          </div>
-          <div class="track-list" id="track-list" role="radiogroup" aria-label="Available calm lo-fi tracks">
-            <!-- 10 tracks populated by app.js -->
-          </div>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -156,7 +119,7 @@
     try {
       const module = await import('./js/texts.js');
       if (module && module.topics && window.SpeakingApp) {
-        window.SpeakingApp.initTopics(module.topics, module.lofiPlaylist);
+        window.SpeakingApp.initTopics(module.topics);
       }
     } catch (e) {
       // Running directly via file:// protocol in Chromium; app.js already loaded fallback topics seamlessly.

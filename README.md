@@ -61,7 +61,7 @@ All practice texts are complete, fluent, authentic English reading passages with
 
 1. **CEFR Level Filter & Topic Selection**:
    - Filter topics instantly by clicking **All (10)**, **A1 Beginner**, **A2 Elementary**, or **B1 Intermediate**.
-   - Each topic card displays its CEFR level badge, theme tag, grammar focus, and assigned calm soundtrack.
+   - Each topic card displays its CEFR level badge, theme tag, and grammar focus.
 2. **Audio Unlock & Intro**:
    - Clicking a topic unlocks browser audio and plays the intro cue ("*Speak fast and clear*").
    - Non-blocking start ensures zero freezing or lag.
@@ -72,12 +72,8 @@ All practice texts are complete, fluent, authentic English reading passages with
    - Paced by words-per-minute (WPM), not pixels per second.
    - Constant, steady velocity without slowdown pauses or freezing.
    - Optical gradient mask creates an elegant focus on the active reading lines.
-5. **Ultra-Calm Background Music**:
-   - Soothing, peaceful ambient tracks designed specifically for speech focus without headaches.
-   - Soft default volume (12%) with live slider adjustment and mute toggle.
-   - Switch tracks on the fly (`Prev Track` / `Next Track`) or select from the track menu.
-6. **Seamless Completion**:
-   - When the text reaches the end, background music gently fades out and the teleprompter remains gracefully in view.
+5. **Seamless Completion**:
+   - When the text reaches the end, the teleprompter remains gracefully in view.
    - The primary button updates to **Restart** (or press `Space`/`R`) to immediately practice again, or click **Back** (`Esc`) to choose another topic.
 
 ---
@@ -88,15 +84,10 @@ All practice texts are complete, fluent, authentic English reading passages with
 |---|---|
 | `Space` | Pause / Resume teleprompter scroll |
 | `R` | Restart current topic from the beginning |
-| `M` | Toggle background music (Mute / Unmute) |
-| `N` | Next calm track |
-| `P` | Previous calm track |
-| `+` / `=` | Increase music volume (+5%) |
-| `-` / `_` | Decrease music volume (-5%) |
 | **Speed Slider** | Continuous range slider from slow `40 WPM` up to max `250 WPM` |
 | `[` / `]` | Decrease / Increase reading speed by 10 WPM |
 | `1`, `2`, `3`, `4` | Quick speed presets: `60` (Slow), `110` (Normal), `160` (Brisk), `250` (Max) |
-| `Esc` | Close music selector dialog or return to topic selection screen |
+| `Esc` | Return to topic selection screen |
 | **Manual Scroll** | Mouse wheel or touch gestures pause scroll; clicking **Resume** continues from current position |
 
 ---
@@ -109,11 +100,9 @@ All practice texts are complete, fluent, authentic English reading passages with
 │   └── style.css               # Minimalist styling (100dvh, GPU translate3d, pastel theme variables)
 ├── js/
 │   ├── app.js                  # Modular AudioEngine, ScrollEngine, and UIManager
-│   └── texts.js                # 10 A1/A2/B1 complete topics and calm playlist metadata
+│   └── texts.js                # 10 A1/A2/B1 complete topics
 ├── assets/
 │   └── audio/
-│       ├── intro.mp3           # Voice prompt ("Speak fast and clear")
-│       ├── intro.wav           # WAV audio file
-│       └── music-01.mp3 ...    # 10 calm soothing audio tracks
+│       └── intro.mp3           # Voice prompt ("Speak fast and clear")
 └── README.md
 ```
