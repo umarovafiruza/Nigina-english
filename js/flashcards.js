@@ -288,14 +288,15 @@
       if (!this.frontStatusBadge) return;
       if (this.masteredSet.has(cardId)) {
         this.frontStatusBadge.className = 'fc-status-badge status-mastered';
-        this.frontStatusBadge.textContent = 'O‘rganildi ✓';
+        this.frontStatusBadge.innerHTML = '<svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-1px;margin-right:4px;"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>O‘rganildi';
         this.frontStatusBadge.classList.remove('hidden');
       } else if (this.reviewSet.has(cardId)) {
         this.frontStatusBadge.className = 'fc-status-badge status-review';
-        this.frontStatusBadge.textContent = 'Takrorlash kerak ↺';
+        this.frontStatusBadge.innerHTML = '<svg viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-1px;margin-right:4px;"><path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9L2 6"/><polyline points="2 2 2 6 6 6"/></svg>Takrorlash';
         this.frontStatusBadge.classList.remove('hidden');
       } else {
         this.frontStatusBadge.className = 'fc-status-badge hidden';
+        this.frontStatusBadge.innerHTML = '';
       }
     },
 

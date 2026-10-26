@@ -625,7 +625,7 @@
 
       this.quizFeedbackBox.innerHTML = `
         <div class="feedback-header">
-          <span class="feedback-badge">${isCorrect ? '✓ To‘g‘ri' : '✕ Xato'}</span>
+          <span class="feedback-badge">${isCorrect ? '<svg class="badge-icon-svg" viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-1px;margin-right:4px;"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>To‘g‘ri' : '<svg class="badge-icon-svg" viewBox="0 0 16 16" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-1px;margin-right:4px;"><line x1="3.5" y1="3.5" x2="12.5" y2="12.5"/><line x1="12.5" y1="3.5" x2="3.5" y2="12.5"/></svg>Xato'}</span>
           <h3 class="feedback-title">${statusTitle}</h3>
         </div>
         <div class="feedback-correction">
@@ -633,7 +633,7 @@
             <span class="correction-label">Gapdagi xato:</span>
             <span class="correction-wrong">[${errorPart.id}] "${this.escapeHTML(errorPart.text)}"</span>
           </div>
-          <div class="correction-arrow">➔</div>
+          <div class="correction-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9 3 14 8 9 13"/></svg></div>
           <div class="correction-item">
             <span class="correction-label">To'g'ri shakl:</span>
             <span class="correction-right">"${this.escapeHTML(errorPart.correction)}"</span>
