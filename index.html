@@ -15,6 +15,41 @@
 </head>
 <body>
 
+  <!-- Top Navigation Bar (Speaking vs Grammar Quiz) -->
+  <header class="app-top-nav" aria-label="Asosiy navigatsiya">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span class="nav-brand-title">English Mastery</span>
+        <span class="nav-brand-badge">
+          <svg class="icon-svg-badge" viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          CEFR A1 • A2 • B1
+        </span>
+      </div>
+      <div class="nav-actions">
+        <nav class="tab-switcher" role="tablist" aria-label="Bo'limlar">
+          <button id="tab-nav-speaking" class="tab-btn active" role="tab" aria-selected="true">
+            Speaking Practice
+          </button>
+          <button id="tab-nav-quiz" class="tab-btn" role="tab" aria-selected="false">
+            Grammar Tenses Quiz
+          </button>
+          <button id="tab-nav-flashcards" class="tab-btn" role="tab" aria-selected="false">
+            Vocabulary Flashcards
+          </button>
+        </nav>
+        <!-- Dark / Light Mode Toggle Button -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Tungi/Kunduzgi rejimni o'zgartirish" title="Rejimni almashtirish">
+          <span class="theme-icon-light" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+          <span class="theme-icon-dark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
   <!-- Thin Progress Line at Top -->
   <div id="progress-bar-container" aria-hidden="true">
     <div id="progress-bar"></div>
@@ -109,9 +144,463 @@
         </div>
       </nav>
     </section>
+
+    <!-- SCREEN 3: GRAMMAR QUIZ SETUP -->
+    <section id="screen-quiz-setup" class="screen" aria-labelledby="quiz-setup-title" aria-hidden="true">
+      <header class="header-quiz">
+        <div class="header-topics-main">
+          <div class="quiz-hero-badge">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Interactive Grammar Test • 400 Savollar Bazasi
+          </div>
+          <h1 id="quiz-setup-title" class="page-title">Grammar Tenses Quiz</h1>
+          <p class="page-instruction">Ingliz tili zamonlari bo‘yicha bilimingizni sinab ko‘ring. Gap ichidagi xato zamon shaklini toping, to‘g‘ri muqobilini bilib oling va grammatik qoidalarni o‘rganing.</p>
+        </div>
+      </header>
+
+      <div class="quiz-setup-card">
+        <!-- Step 1: Level Selection -->
+        <div class="setup-group">
+          <div class="setup-group-header">
+            <span class="setup-step-num">1</span>
+            <label class="setup-label">CEFR Darajasini tanlang:</label>
+          </div>
+          <div class="setup-pills-row level-grid" role="radiogroup" aria-label="CEFR Darajasi">
+            <button type="button" class="quiz-level-pill active" data-level="all" role="radio" aria-checked="true">
+              <div class="pill-icon-wrap icon-all">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              </div>
+              <div class="pill-body">
+                <span class="pill-title">All Tenses</span>
+                <span class="pill-desc">Aralash (Barcha 12 ta zamon)</span>
+              </div>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-level-pill" data-level="A1" role="radio" aria-checked="false">
+              <div class="pill-icon-wrap icon-a1">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div class="pill-body">
+                <span class="pill-title">A1 Beginner</span>
+                <span class="pill-desc">Present Simple, Continuous, Past Simple</span>
+              </div>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-level-pill" data-level="A2" role="radio" aria-checked="false">
+              <div class="pill-icon-wrap icon-a2">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              </div>
+              <div class="pill-body">
+                <span class="pill-title">A2 Elementary</span>
+                <span class="pill-desc">Past Continuous, Present Perfect, Future</span>
+              </div>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-level-pill" data-level="B1" role="radio" aria-checked="false">
+              <div class="pill-icon-wrap icon-b1">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              </div>
+              <div class="pill-body">
+                <span class="pill-title">B1 Intermediate</span>
+                <span class="pill-desc">Past Perfect, Perfect Continuous, Conditionals</span>
+              </div>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Specific Tense Sub-topic Filter -->
+        <div class="setup-group">
+          <div class="setup-group-header">
+            <span class="setup-step-num">2</span>
+            <label class="setup-label">Aniq zamonni tanlang <span class="label-sub">(Ixtiyoriy filtr):</span></label>
+          </div>
+          <div class="tense-filter-chips" role="radiogroup" aria-label="Zamonlar bo'yicha filtr">
+            <button type="button" class="tense-chip active" data-tense-filter="all" role="radio" aria-checked="true">Barchasi</button>
+            <button type="button" class="tense-chip" data-tense-filter="present simple" role="radio" aria-checked="false">Present Simple</button>
+            <button type="button" class="tense-chip" data-tense-filter="present continuous" role="radio" aria-checked="false">Present Continuous</button>
+            <button type="button" class="tense-chip" data-tense-filter="past simple" role="radio" aria-checked="false">Past Simple</button>
+            <button type="button" class="tense-chip" data-tense-filter="past continuous" role="radio" aria-checked="false">Past Continuous</button>
+            <button type="button" class="tense-chip" data-tense-filter="present perfect" role="radio" aria-checked="false">Present Perfect</button>
+            <button type="button" class="tense-chip" data-tense-filter="past perfect" role="radio" aria-checked="false">Past Perfect</button>
+            <button type="button" class="tense-chip" data-tense-filter="future" role="radio" aria-checked="false">Future Tenses</button>
+            <button type="button" class="tense-chip" data-tense-filter="continuous" role="radio" aria-checked="false">Continuous Tenses</button>
+            <button type="button" class="tense-chip" data-tense-filter="conditional" role="radio" aria-checked="false">Conditionals</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Question Count Selection -->
+        <div class="setup-group">
+          <div class="setup-group-header">
+            <span class="setup-step-num">3</span>
+            <label class="setup-label">Savollar sonini tanlang:</label>
+          </div>
+          <div class="setup-pills-row count-row" role="radiogroup" aria-label="Savollar soni">
+            <button type="button" class="quiz-count-pill" data-count="5" role="radio" aria-checked="false">
+              <span class="count-number">5</span>
+              <span class="count-label">ta savol • Tezkor</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-count-pill active" data-count="10" role="radio" aria-checked="true">
+              <span class="count-number">10</span>
+              <span class="count-label">ta savol • Standart</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-count-pill" data-count="20" role="radio" aria-checked="false">
+              <span class="count-number">20</span>
+              <span class="count-label">ta savol • Kengaytirilgan</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-count-pill" data-count="30" role="radio" aria-checked="false">
+              <span class="count-number">30</span>
+              <span class="count-label">ta savol • Katta sinov</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Timer Options Selection -->
+        <div class="setup-group">
+          <div class="setup-group-header">
+            <span class="setup-step-num">4</span>
+            <label class="setup-label">Vaqt rejimini tanlang (Taymer):</label>
+          </div>
+          <div class="setup-pills-row timer-row" role="radiogroup" aria-label="Taymer rejimi">
+            <button type="button" class="quiz-timer-pill active" data-timer="0" role="radio" aria-checked="true">
+              <div class="timer-pill-header">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <span class="timer-title">Cheklovsiz</span>
+              </div>
+              <span class="timer-desc">Shoshilmasdan o'rganish uchun</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-timer-pill" data-timer="180" role="radio" aria-checked="false">
+              <div class="timer-pill-header">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span class="timer-title">3 daqiqa</span>
+              </div>
+              <span class="timer-desc">Tezkor chaqqon sinov</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-timer-pill" data-timer="300" role="radio" aria-checked="false">
+              <div class="timer-pill-header">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+                <span class="timer-title">5 daqiqa</span>
+              </div>
+              <span class="timer-desc">Standart imtihon sur'ati</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="quiz-timer-pill" data-timer="600" role="radio" aria-checked="false">
+              <div class="timer-pill-header">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+                <span class="timer-title">10 daqiqa</span>
+              </div>
+              <span class="timer-desc">Katta va jiddiy sinov</span>
+              <span class="selection-check" aria-hidden="true">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Info & Start Action -->
+        <div class="setup-footer">
+          <div class="setup-summary-wrap">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="summary-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p id="quiz-setup-summary" class="setup-summary-text">Tanlangan: Barcha zamonlar • 10 ta savol • Cheklovsiz rejim.</p>
+          </div>
+          <button id="btn-start-quiz" class="btn-primary-start" type="button">
+            <span>Testni boshlash</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: GRAMMAR QUIZ PLAY (ERROR IDENTIFICATION) -->
+    <section id="screen-quiz-play" class="screen" aria-label="Grammar quiz session" aria-hidden="true">
+      <div class="quiz-play-container">
+        <!-- Progress Bar & Status -->
+        <div class="quiz-top-status">
+          <div class="quiz-status-left">
+            <span id="quiz-step-counter" class="quiz-counter">Savol 1 / 10</span>
+            <span id="quiz-level-badge" class="quiz-badge">A1 • Present Simple</span>
+          </div>
+          <div class="quiz-status-right">
+            <!-- Active Timer Chip -->
+            <div id="quiz-timer-chip" class="quiz-timer-chip" aria-live="polite">
+              <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="quiz-timer-display">Cheklovsiz</span>
+            </div>
+            <button id="btn-quiz-quit" class="btn-text btn-quit" type="button" aria-label="Testni to'xtatish">Chiqish</button>
+          </div>
+        </div>
+
+        <div class="quiz-progress-track" aria-hidden="true">
+          <div id="quiz-progress-line" class="quiz-progress-fill"></div>
+        </div>
+
+        <!-- Instructions Card -->
+        <div class="quiz-hint-banner">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <p id="quiz-tense-hint" class="quiz-hint-instruction">Quyidagi gapda 4 qismdan biri zamon jihatidan xatodir. Xato qismni bosing:</p>
+        </div>
+
+        <!-- Sentence Box with [A], [B], [C], [D] parts -->
+        <div id="quiz-sentence-box" class="quiz-sentence-box" role="group" aria-label="Xatoni topish savoli">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Instant Feedback Card (Correct / Wrong + Explanation) -->
+        <div id="quiz-feedback-box" class="quiz-feedback-box hidden" aria-live="polite">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Next Action Button -->
+        <div class="quiz-action-bar">
+          <button id="btn-quiz-next" class="btn-next hidden" type="button">
+            <span>Keyingi savol</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: GRAMMAR QUIZ RESULTS -->
+    <section id="screen-quiz-result" class="screen" aria-label="Grammar quiz results" aria-hidden="true">
+      <div class="quiz-result-container">
+        <header class="result-header">
+          <div class="result-header-badge-row">
+            <span id="result-rating-badge" class="result-badge">Yaxshi natija</span>
+          </div>
+          <h2 class="result-title">Test yakunlandi!</h2>
+          <p id="result-message" class="result-message-text">Grammatika bo‘yicha yaxshi natija ko‘rsatdingiz!</p>
+        </header>
+
+        <div class="result-score-card">
+          <div class="score-main">
+            <span id="result-score-num" class="score-number">8 / 10</span>
+            <span id="result-score-pct" class="score-percentage">80%</span>
+          </div>
+          <div id="result-time-taken" class="result-time-taken">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="result-time-text">Sarflangan vaqt: 02:45</span>
+          </div>
+        </div>
+
+        <!-- Weak Tenses Analysis -->
+        <div id="result-weak-container" class="weak-analysis-card hidden">
+          <div class="analysis-header">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <h3 class="analysis-title">Zaif tomonlar tahlili (Xatolar bo‘yicha tavsiyalar):</h3>
+          </div>
+          <ul id="result-weak-list" class="weak-tenses-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="result-actions">
+          <button id="btn-quiz-retake" class="btn-retake" type="button">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            <span>Qayta ishlash</span>
+          </button>
+          <button id="btn-quiz-change-settings" class="btn-text btn-pill-action" type="button">Boshqa darajani tanlash</button>
+          <button id="btn-quiz-go-speaking" class="btn-text btn-pill-action" type="button">Speaking bo‘limiga o‘tish</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: VOCABULARY FLASHCARDS -->
+    <section id="screen-flashcards" class="screen" aria-labelledby="flashcards-title">
+      <header class="header-flashcards">
+        <div class="fc-hero-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Interactive Vocabulary Flashcards
+        </div>
+        <h1 id="flashcards-title" class="page-title">Vocabulary Flashcards</h1>
+        <p class="page-instruction">So‘zlarni rangli illyustratsiyalar, to‘g‘ri talaffuz va kontekstdagi gaplar orqali yod oling. Gapni va tarjimani ko‘rish uchun kartochkani bosing.</p>
+      </header>
+
+      <!-- Flashcards Control Toolbar -->
+      <div class="fc-toolbar">
+        <div class="fc-toolbar-left">
+          <div class="fc-level-pills" role="radiogroup" aria-label="CEFR Darajalari">
+            <button class="fc-level-pill active" data-level="all" type="button">Barchasi (40)</button>
+            <button class="fc-level-pill" data-level="A1" type="button">A1</button>
+            <button class="fc-level-pill" data-level="A2" type="button">A2</button>
+            <button class="fc-level-pill" data-level="B1" type="button">B1</button>
+          </div>
+          <div class="fc-category-wrap">
+            <select id="fc-category-select" class="fc-category-select" aria-label="Mavzular filtri">
+              <option value="all">Barcha mavzular</option>
+              <option value="Nature">Nature (Tabiat)</option>
+              <option value="Travel">Travel (Sayohat)</option>
+              <option value="Food">Food (Taomlar)</option>
+              <option value="Health">Health (Salomatlik)</option>
+              <option value="Emotions">Emotions (Hissiyotlar)</option>
+              <option value="Education">Education (Ta'lim)</option>
+              <option value="Daily Life">Daily Life (Kundalik hayot)</option>
+              <option value="Work & Study">Work & Study (Ish & O'qish)</option>
+            </select>
+          </div>
+        </div>
+        <div class="fc-toolbar-right">
+          <button id="btn-fc-shuffle" class="fc-tool-btn" type="button" title="Kartalarni tasodifiy aralashtirish">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+            <span>Aralashtirish</span>
+          </button>
+          <button id="btn-fc-reset" class="fc-tool-btn" type="button" title="O'rganish natijalarini tozalash">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+            <span>Qayta o'rnatish</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Flashcards Status & Progress Bar -->
+      <div class="fc-status-row">
+        <div class="fc-status-left">
+          <span id="fc-counter-text" class="fc-counter-chip">1 / 40</span>
+          <span id="fc-count-mastered" class="fc-stat-chip fc-stat-mastered">0 o‘rganildi</span>
+          <span id="fc-count-review" class="fc-stat-chip fc-stat-review">0 takrorlash</span>
+        </div>
+        <div class="fc-progress-track" aria-hidden="true">
+          <div id="fc-progress-fill" class="fc-progress-fill" style="width: 2.5%;"></div>
+        </div>
+      </div>
+
+      <!-- 3D Flashcard Scene -->
+      <div class="flashcard-scene-container">
+        <div class="flashcard-scene">
+          <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="So‘z kartasi, aylantirish uchun bosing">
+            <!-- Front Face -->
+            <div id="flashcard-front" class="flashcard-face flashcard-front">
+              <div class="fc-card-topbar">
+                <div class="fc-badges-wrap">
+                  <span id="fc-front-level" class="fc-badge-pill fc-badge-level">A1</span>
+                  <span id="fc-front-category" class="fc-badge-pill fc-badge-category">Nature</span>
+                  <span id="fc-front-status" class="fc-status-badge hidden">O‘rganildi ✓</span>
+                </div>
+                <button id="btn-fc-audio-word" class="fc-btn-audio" type="button" title="Talaffuzni tinglash" aria-label="Inglizcha talaffuzni tinglash">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                </button>
+              </div>
+
+              <!-- Colorful SVG Illustration Container -->
+              <div id="fc-front-svg" class="fc-svg-illustration">
+                <!-- SVG dynamically injected -->
+              </div>
+
+              <!-- Word & Phonetics -->
+              <div class="fc-front-text-wrap">
+                <div class="fc-word-row">
+                  <h2 id="fc-front-word" class="fc-word-text">Mountain</h2>
+                  <span id="fc-front-pos" class="fc-pos-text">[noun]</span>
+                </div>
+                <div id="fc-front-phonetic" class="fc-phonetic-text">/ˈmaʊn.tɪn/</div>
+                <div class="fc-divider"></div>
+                <div id="fc-front-translation" class="fc-translation-text">Tog‘</div>
+              </div>
+
+              <!-- Flip Hint Bottom -->
+              <div class="fc-flip-prompt">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                <span>Orqasiga o‘girib gapni ko‘rish uchun bosing</span>
+              </div>
+            </div>
+
+            <!-- Back Face -->
+            <div id="flashcard-back" class="flashcard-face flashcard-back">
+              <div class="fc-card-topbar">
+                <div class="fc-badges-wrap">
+                  <span class="fc-badge-pill fc-badge-back-tag">Misol gap (Example)</span>
+                  <span id="fc-back-level" class="fc-badge-pill fc-badge-category">A1 • Nature</span>
+                </div>
+                <button id="btn-fc-audio-sentence" class="fc-btn-audio" type="button" title="Gapni to‘liq tinglash" aria-label="Inglizcha gapni tinglash">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                </button>
+              </div>
+
+              <div class="fc-back-content">
+                <div class="fc-quote-icon">“</div>
+                <div id="fc-back-sentence" class="fc-sentence-text">
+                  We climbed to the top of the snowy <mark class="sentence-highlight">mountain</mark> at sunrise.
+                </div>
+                <div id="fc-back-sentence-uz" class="fc-sentence-translation">
+                  Biz quyosh chiqishi paytida qorli tog‘ cho‘qqisiga chiqdik.
+                </div>
+                <div id="fc-back-collocation" class="fc-collocation-box">
+                  <strong>Foydali birikma:</strong> high mountain • climb a mountain
+                </div>
+              </div>
+
+              <!-- Flip Hint Bottom -->
+              <div class="fc-flip-prompt">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 1 1 2.13 9.36L1 14"/></svg>
+                <span>Oldi tomoniga qaytish uchun bosing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Navigation Buttons Below Flashcard -->
+      <div class="fc-actions-container">
+        <div class="fc-nav-controls">
+          <button id="btn-fc-prev" class="btn-fc-nav" type="button" title="Oldingi karta (←)">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            <span>Oldingisi</span>
+          </button>
+          <button id="btn-fc-flip" class="btn-fc-flip-action" type="button" title="Kartani ag‘darish (Bo‘shliq / Space)">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>Ag‘darish</span>
+          </button>
+          <button id="btn-fc-next" class="btn-fc-nav" type="button" title="Keyingi karta (→)">
+            <span>Keyingisi</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <div class="fc-mastery-controls">
+          <button id="btn-fc-mark-review" class="btn-fc-mark-review" type="button" title="Qaytarish ro‘yxatiga qo‘shish (1)">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>Takrorlash kerak [1]</span>
+          </button>
+          <button id="btn-fc-mark-mastered" class="btn-fc-mark-mastered" type="button" title="O‘rganildi deb belgilash (2)">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>O‘rgandim [2]</span>
+          </button>
+        </div>
+
+        <div class="fc-keyboard-shortcuts-hint">
+          <span>Klaviatura:</span> <code>Bo‘shliq (Space)</code> — ag‘darish &bull; <code>← / →</code> — o‘tish &bull; <code>1</code> — takrorlash &bull; <code>2</code> — o‘rgandim
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- ==========================================================================
+       CUSTOM DESIGN SYSTEM MODALS / POP-UP OYNALAR
+       ========================================================================== -->
+  <div id="modal-container" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-dialog" id="modal-dialog">
+      <div class="modal-icon-wrap" id="modal-icon-wrap">
+        <!-- Dynamic icon inserted by ModalManager -->
+      </div>
+      <div class="modal-content">
+        <h3 id="modal-title" class="modal-title">Sarlavha</h3>
+        <p id="modal-message" class="modal-message">Xabar matni</p>
+      </div>
+      <div class="modal-actions" id="modal-actions">
+        <!-- Dynamic buttons inserted by ModalManager -->
+      </div>
+    </div>
+  </div>
+
   <!-- Load Application Logic -->
+  <script src="js/quiz-data.js" defer></script>
+  <script src="js/flashcards-data.js" defer></script>
+  <script src="js/flashcards.js" defer></script>
+  <script src="js/quiz.js" defer></script>
   <script src="js/app.js" defer></script>
   
   <!-- Module integration for HTTP / Modern module environments -->

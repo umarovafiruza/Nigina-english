@@ -92,15 +92,45 @@ All practice texts are complete, fluent, authentic English reading passages with
 
 ---
 
+## Grammar Tenses Quiz (Error Identification)
+
+Saytga ingliz tili zamonlari bo‘yicha interaktiv **Grammar Quiz** tizimi qo‘shilgan:
+- **Katta Savollar Bazasi**: Jami **400 ta** Error Identification savollari (A1: 135 ta, A2: 135 ta, B1: 130 ta).
+- **CEFR Darajalari bo‘yicha toifalash**: A1 Beginner, A2 Elementary, B1 Intermediate va barcha zamonlar aralash ("All Tenses Mixed").
+- **Haqiqiy Tasodifiy (Random) Tanlash**: Fisher-Yates (Knuth) algoritmi asosida 400 ta savoldan har safar yangi to'plam olinadi.
+- **Savollar sonini moslash**: 5 ta (tezkor), 10 ta (standart), 20 ta (kengaytirilgan) yoki 30 ta (katta sinov) test rejimlari.
+- **Error Identification formati**: Har bir savolda gap beriladi va 4 ta belgilangan qism `[A]`, `[B]`, `[C]`, `[D]` dan zamon jihatidan xato qismi tanlanadi.
+- **Darhol grammatik izoh (Instant Feedback)**: To‘g‘ri/noto‘g‘ri ekanligi, xato so‘z va to‘g‘ri muqobili hamda o‘zbek tilida qoidaning to‘liq tushuntirishi ko‘rsatiladi.
+- **Natijalar va zaif tomonlar tahlili**: Umumiy ball va foiz bilan bir qatorda, qaysi zamonlarda xatolik bo‘lgani aniqlanib, takrorlash uchun tavsiyalar beriladi.
+- **Loyiha dizayndagi pop-up oynalar**: Standart brauzer `alert()` va `confirm()` o'rniga zamonaviy `ModalManager` xavfsiz va chiroyli oynalari.
+
+---
+
+## Vocabulary Flashcards (Interaktiv 3D Kartochkalar)
+
+Ingliz tili so‘z boyligini oshirish va takrorlash uchun boy **Vocabulary Flashcards** bo‘limi:
+- **3D Flip Animatsiya**: Kartaning old tomonida so‘z, transkripsiya, o‘zbekcha tarjima va yorqin rangli SVG illyustratsiya; orqa tomonida esa kontekstdagi inglizcha gap, o‘zbekcha tarjimasi va foydali birikmalar joylashgan.
+- **Rangli SVG Illyustratsiyalar**: Har bir so‘z uchun maxsus, yorqin va ko‘p rangli vektorli SVG rasmlari mavjud.
+- **Ovozli Talaffuz (Text-to-Speech)**: Inglizcha so‘z va gapni tabiiy, to‘g‘ri talaffuzda tinglash imkoniyati (`SpeechSynthesis`).
+- **Filtrlar va Mavzular**: CEFR darajalari (A1, A2, B1) hamda mavzular bo‘yicha saralash (*Nature, Travel, Food, Health, Emotions, Education, Daily Life, Work & Study*).
+- **Bilim darajasini belgilash**: «O‘rgandim» va «Takrorlash kerak» tugmalari orqali so‘zlar xotirada saqlanadi (`localStorage`).
+- **Klaviatura yordamida boshqarish**: `Bo‘shliq` (Space) — ag‘darish, `← / →` — o‘tish, `1` — takrorlash, `2` — o‘rgandim.
+
+---
+
 ## File Structure
 
 ```
-├── index.html                  # Semantic markup (zero icons, pure typography, level filter)
+├── index.html                  # Semantic markup (Speaking teleprompter + Grammar Quiz + Flashcards tabs)
 ├── css/
-│   └── style.css               # Minimalist styling (100dvh, GPU translate3d, pastel theme variables)
+│   └── style.css               # Design system, 3D flip card styles, pastel themes, dark mode rules
 ├── js/
 │   ├── app.js                  # Modular AudioEngine, ScrollEngine, and UIManager
-│   └── texts.js                # 10 A1/A2/B1 complete topics
+│   ├── texts.js                # 10 A1/A2/B1 complete topics
+│   ├── quiz-data.js            # 400 ta CEFR A1/A2/B1 Error Identification savollari & o'zbekcha izohlar
+│   ├── quiz.js                 # QuizEngine: Fisher-Yates randomizer, scoring & weak tense analytics
+│   ├── flashcards-data.js      # 40 ta rangli SVG rasmli, misol gapli interaktiv flashkarta ma'lumotlari
+│   └── flashcards.js           # FlashcardEngine: 3D kartochkalar, SpeechSynthesis, filtrlash va xotira
 ├── assets/
 │   └── audio/
 │       └── intro.mp3           # Voice prompt ("Speak fast and clear")

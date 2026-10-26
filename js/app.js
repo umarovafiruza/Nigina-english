@@ -631,7 +631,21 @@ const UIManager = (() => {
 
   function applyTopicTheme(theme) {
     if (!theme) return;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const root = document.documentElement;
+
+    if (isDark) {
+      root.style.setProperty('--color-topic-bg', '#0B0F19');
+      root.style.setProperty('--color-topic-text', '#F8FAFC');
+      root.style.setProperty('--color-topic-border', '#243248');
+
+      const topFade = 'rgba(11, 15, 25, 1)';
+      const topFadeTrans = 'rgba(11, 15, 25, 0)';
+      root.style.setProperty('--color-topic-fade-top', `linear-gradient(to bottom, ${topFade} 0%, ${topFade} 20%, ${topFadeTrans} 100%)`);
+      root.style.setProperty('--color-topic-fade-bottom', `linear-gradient(to top, ${topFade} 0%, ${topFade} 20%, ${topFadeTrans} 100%)`);
+      return;
+    }
+
     root.style.setProperty('--color-topic-bg', theme.bg || '#F8F4EE');
     root.style.setProperty('--color-topic-text', theme.text || '#221C16');
     root.style.setProperty('--color-topic-border', theme.border || '#E4D9C8');
@@ -665,8 +679,11 @@ const UIManager = (() => {
       card.setAttribute('tabindex', '0');
 
       if (topic.theme) {
-        card.style.backgroundColor = topic.theme.cardBg || topic.theme.bg || '#FFFFFF';
-        card.style.borderColor = topic.theme.border || '#E5E5E5';
+        card.style.setProperty('--topic-card-bg', topic.theme.cardBg || topic.theme.bg || '#FFFFFF');
+        card.style.setProperty('--topic-card-border', topic.theme.border || '#E5E5E5');
+        if (topic.theme.badgeBg) {
+          card.style.setProperty('--topic-badge-bg', topic.theme.badgeBg);
+        }
       }
 
       const topRow = document.createElement('div');
@@ -690,8 +707,7 @@ const UIManager = (() => {
       levelBadge.className = 'topic-level-badge';
       levelBadge.textContent = topic.levelName || topic.level || 'CEFR';
       if (topic.theme && topic.theme.badgeBg) {
-        levelBadge.style.backgroundColor = topic.theme.badgeBg;
-        levelBadge.style.borderColor = topic.theme.border;
+        levelBadge.style.setProperty('--topic-badge-bg', topic.theme.badgeBg);
       }
       badgesWrap.appendChild(levelBadge);
 
@@ -841,6 +857,19 @@ const UIManager = (() => {
   }
 
   function showScreen(screenName) {
+    const quizScreens = document.querySelectorAll('#screen-quiz-setup, #screen-quiz-play, #screen-quiz-result');
+    quizScreens.forEach(s => {
+      s.classList.remove('active');
+      s.setAttribute('aria-hidden', 'true');
+    });
+
+    const tabSpeaking = document.getElementById('tab-nav-speaking');
+    const tabQuiz = document.getElementById('tab-nav-quiz');
+    if (tabSpeaking && tabQuiz) {
+      tabSpeaking.classList.add('active');
+      tabQuiz.classList.remove('active');
+    }
+
     screenTopics.classList.remove('active');
     screenTopics.setAttribute('aria-hidden', 'true');
 
@@ -966,6 +995,13 @@ const UIManager = (() => {
           e.preventDefault();
           leavePracticeSession();
         }
+      }
+    });
+
+    // React to dynamic theme toggle
+    window.addEventListener('themeChanged', () => {
+      if (isSessionActive && currentTopic) {
+        applyTopicTheme(currentTopic.theme);
       }
     });
   }
