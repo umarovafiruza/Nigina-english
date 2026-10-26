@@ -857,17 +857,32 @@ const UIManager = (() => {
   }
 
   function showScreen(screenName) {
-    const quizScreens = document.querySelectorAll('#screen-quiz-setup, #screen-quiz-play, #screen-quiz-result');
-    quizScreens.forEach(s => {
+    const otherScreens = document.querySelectorAll('#screen-quiz-setup, #screen-quiz-play, #screen-quiz-result, #screen-flashcards, #screen-listening-main, #screen-listening-exercise, #screen-listening-result');
+    otherScreens.forEach(s => {
       s.classList.remove('active');
       s.setAttribute('aria-hidden', 'true');
     });
 
+    if (window.ListeningEngine && typeof window.ListeningEngine.stopAudio === 'function') {
+      window.ListeningEngine.stopAudio();
+    }
+
+    const tabs = [
+      document.getElementById('tab-nav-speaking'),
+      document.getElementById('tab-nav-listening'),
+      document.getElementById('tab-nav-quiz'),
+      document.getElementById('tab-nav-flashcards')
+    ];
+    tabs.forEach(t => {
+      if (t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      }
+    });
     const tabSpeaking = document.getElementById('tab-nav-speaking');
-    const tabQuiz = document.getElementById('tab-nav-quiz');
-    if (tabSpeaking && tabQuiz) {
+    if (tabSpeaking) {
       tabSpeaking.classList.add('active');
-      tabQuiz.classList.remove('active');
+      tabSpeaking.setAttribute('aria-selected', 'true');
     }
 
     screenTopics.classList.remove('active');

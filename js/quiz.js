@@ -175,6 +175,7 @@
 
       // Top Tab Navigation & Theme Toggle
       this.navTabSpeaking = document.getElementById('tab-nav-speaking');
+      this.navTabListening = document.getElementById('tab-nav-listening');
       this.navTabQuiz = document.getElementById('tab-nav-quiz');
       this.navTabFlashcards = document.getElementById('tab-nav-flashcards');
       this.themeToggleBtn = document.getElementById('theme-toggle-btn');
@@ -237,6 +238,9 @@
       // Top Tab switcher
       if (this.navTabSpeaking) {
         this.navTabSpeaking.addEventListener('click', () => this.switchToSection('speaking'));
+      }
+      if (this.navTabListening) {
+        this.navTabListening.addEventListener('click', () => this.switchToSection('listening'));
       }
       if (this.navTabQuiz) {
         this.navTabQuiz.addEventListener('click', () => this.switchToSection('quiz'));
@@ -336,23 +340,55 @@
 
     switchToSection(section) {
       this.stopTimer();
-      const tabs = [this.navTabSpeaking, this.navTabQuiz, this.navTabFlashcards];
-      tabs.forEach(t => t && t.classList.remove('active'));
+      const tabs = [this.navTabSpeaking, this.navTabListening, this.navTabQuiz, this.navTabFlashcards];
+      tabs.forEach(t => {
+        if (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        }
+      });
+
+      // Stop listening audio if switching away
+      if (window.ListeningEngine && typeof window.ListeningEngine.stopAudio === 'function') {
+        window.ListeningEngine.stopAudio();
+      }
 
       if (section === 'speaking') {
-        if (this.navTabSpeaking) this.navTabSpeaking.classList.add('active');
+        if (this.navTabSpeaking) {
+          this.navTabSpeaking.classList.add('active');
+          this.navTabSpeaking.setAttribute('aria-selected', 'true');
+        }
         this.showScreen(this.screenTopics);
+      } else if (section === 'listening') {
+        if (window.SpeakingApp && window.SpeakingApp.UIManager && typeof window.SpeakingApp.UIManager.leavePracticeSession === 'function') {
+          window.SpeakingApp.UIManager.leavePracticeSession();
+        }
+        if (this.navTabListening) {
+          this.navTabListening.classList.add('active');
+          this.navTabListening.setAttribute('aria-selected', 'true');
+        }
+        const listeningScreen = document.getElementById('screen-listening-main');
+        this.showScreen(listeningScreen);
+        if (window.ListeningEngine && typeof window.ListeningEngine.renderMainPage === 'function') {
+          window.ListeningEngine.renderMainPage();
+        }
       } else if (section === 'quiz') {
         if (window.SpeakingApp && window.SpeakingApp.UIManager && typeof window.SpeakingApp.UIManager.leavePracticeSession === 'function') {
           window.SpeakingApp.UIManager.leavePracticeSession();
         }
-        if (this.navTabQuiz) this.navTabQuiz.classList.add('active');
+        if (this.navTabQuiz) {
+          this.navTabQuiz.classList.add('active');
+          this.navTabQuiz.setAttribute('aria-selected', 'true');
+        }
         this.showScreen(this.screenQuizSetup);
       } else if (section === 'flashcards') {
         if (window.SpeakingApp && window.SpeakingApp.UIManager && typeof window.SpeakingApp.UIManager.leavePracticeSession === 'function') {
           window.SpeakingApp.UIManager.leavePracticeSession();
         }
-        if (this.navTabFlashcards) this.navTabFlashcards.classList.add('active');
+        if (this.navTabFlashcards) {
+          this.navTabFlashcards.classList.add('active');
+          this.navTabFlashcards.setAttribute('aria-selected', 'true');
+        }
         this.showScreen(this.screenFlashcards);
         if (window.FlashcardEngine && typeof window.FlashcardEngine.renderCard === 'function') {
           window.FlashcardEngine.renderCard();
@@ -367,7 +403,10 @@
         this.screenQuizSetup,
         this.screenQuizPlay,
         this.screenQuizResult,
-        this.screenFlashcards
+        this.screenFlashcards,
+        document.getElementById('screen-listening-main'),
+        document.getElementById('screen-listening-exercise'),
+        document.getElementById('screen-listening-result')
       ];
       allScreens.forEach(s => {
         if (s) {
@@ -379,7 +418,7 @@
       if (targetScreen) {
         targetScreen.classList.add('active');
         targetScreen.setAttribute('aria-hidden', 'false');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'auto' });
       }
     },
 
